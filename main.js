@@ -5,9 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const repo = 'brodota-lexicon';
     const token = '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';
 
-    addItemForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-
+    // Define addItem globally
+    window.addItem = function() {
         const itemName = document.getElementById('itemName').value;
 
         // Add item to GitHub repository using GitHub API
@@ -18,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Update the displayed items
         displayItemsFromGitHub();
-    });
+    };
 
     // Function to add item to GitHub repository using GitHub API
     function addItemToGitHub(itemName) {
