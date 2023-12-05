@@ -49,9 +49,12 @@ document.addEventListener('DOMContentLoaded', function () {
                                     effectCell.textContent = item.effect;
                                     row.appendChild(effectCell);
 
+                                    // Combine all buffs in one array
+                                    const allBuffs = [...item.buffs, ...item.parallel_buff, ...item.conditional_buff, ...item.random_buff, ...item.special_buff];
+
                                     // Display buffs in one column separated by commas
                                     const buffsCell = document.createElement('td');
-                                    buffsCell.textContent = item.buffs.map(buff => {
+                                    buffsCell.textContent = allBuffs.map(buff => {
                                         const buffInfo = buffs.find(b => b._id === buff._id);
                                         return `${buffInfo.name}: ${buff.value}`;
                                     }).join(', ');
