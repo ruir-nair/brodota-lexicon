@@ -30,7 +30,7 @@
     </style>
 </head>
 <body>
-    <h1>Item Manager</h1>
+    <h1>Item Manager Uhuy</h1>
 
     <form id="addItemForm">
         <label for="itemName">Item Name:</label>
@@ -62,9 +62,9 @@
 
             // Function to add item to GitHub repository using GitHub API
             function addItemToGitHub(itemName) {
-                const username = 'ruir-nair';
-                const repo = 'brodota-lexicon';
-                const token = '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';
+                const username = 'your-username';
+                const repo = 'your-repository';
+                const token = 'your-access-token';
 
                 const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/item.json`;
 
@@ -76,8 +76,14 @@
                 })
                 .then(response => response.json())
                 .then(data => {
+                    // Parse the content as JSON
                     const content = JSON.parse(atob(data.content));
+
+                    // Add new item
                     content.push(itemName);
+
+                    // Encode the updated content to base64
+                    const updatedContent = btoa(JSON.stringify(content, null, 2));
 
                     return fetch(apiUrl, {
                         method: 'PUT',
@@ -87,7 +93,7 @@
                         },
                         body: JSON.stringify({
                             message: 'Add item to item.json',
-                            content: btoa(JSON.stringify(content, null, 2)),
+                            content: updatedContent,
                             sha: data.sha,
                         }),
                     });
@@ -99,13 +105,14 @@
 
             // Function to display items from GitHub repository using GitHub API
             function displayItemsFromGitHub() {
-                const username = 'ruir-nair';
-                const repo = 'brodota-lexicon';
+                const username = 'your-username';
+                const repo = 'your-repository';
                 const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/item.json`;
 
                 fetch(apiUrl)
                     .then(response => response.json())
                     .then(data => {
+                        // Parse the content as JSON
                         const content = JSON.parse(atob(data.content));
 
                         // Clear the current list
@@ -120,6 +127,7 @@
                     })
                     .catch(error => console.error('Error:', error));
             }
+
 
             // Initial display
             displayItemsFromGitHub();
