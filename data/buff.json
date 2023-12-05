@@ -1,0 +1,19 @@
+[
+    { "_id": 1, "name": "Attack Power" },
+    { "_id": 2, "name": "Cooldown Speed" },
+    { "_id": 3, "name": "Critical Rate" },
+    { "_id": 4, "name": "Extra Damage" },
+    { "_id": 5, "name": "S-Strike Damage" },
+    { "_id": 6, "name": "Precision Damage" },
+    { "_id": 7, "name": "Arcane Damage" },
+    { "_id": 8, "name": "Extra Health" },
+    { "_id": 9, "name": "Health Regen" },
+    { "_id": 10, "name": "Hit Recovery" },
+    { "_id": 11, "name": "Defense" },
+    { "_id": 12, "name": "Base Evasion" },
+    { "_id": 13, "name": "Range" },
+    { "_id": 14, "name": "Movement Speed" },
+    { "_id": 15, "name": "Luck" },
+    { "_id": 16, "name": "Investment" },
+    { "_id": 17, "name": "Others" }
+]

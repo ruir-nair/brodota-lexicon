@@ -3,30 +3,55 @@
         "_id": 1,
         "name": "Excalibur",
         "tier": "legendary",
-        "effect": "+50% attack"
+        "effect": "+50% attack",
+        "buffs": [
+            { "_id": 1, "value": 30 },
+            { "_id": 2, "value": -20 },
+            { "_id": 3, "value": 10 }
+        ]
     },
     {
         "_id": 2,
         "name": "Phoenix Bow",
         "tier": "epic",
-        "effect": "+40% attack"
+        "effect": "+40% attack",
+        "buffs": [
+            { "_id": 4, "value": 25 },
+            { "_id": 5, "value": 15 },
+            { "_id": 6, "value": -10 }
+        ]
     },
     {
         "_id": 3,
         "name": "Fire Sword",
         "tier": "rare",
-        "effect": "+20% attack"
+        "effect": "+20% attack",
+        "buffs": [
+            { "_id": 7, "value": 10 },
+            { "_id": 8, "value": 20 },
+            { "_id": 9, "value": -5 }
+        ]
     },
     {
         "_id": 4,
         "name": "Ice Wand",
         "tier": "uncommon",
-        "effect": "+15% attack"
+        "effect": "+15% attack",
+        "buffs": [
+            { "_id": 10, "value": 5 },
+            { "_id": 11, "value": -10 },
+            { "_id": 12, "value": 8 }
+        ]
     },
     {
         "_id": 5,
         "name": "Wooden Stick",
         "tier": "common",
-        "effect": "+5% attack"
+        "effect": "+5% attack",
+        "buffs": [
+            { "_id": 13, "value": 15 },
+            { "_id": 14, "value": -15 },
+            { "_id": 15, "value": 0 }
+        ]
     }
 ]
