@@ -1,0 +1,26 @@
+[
+    {
+        "tier": "legendary",
+        "color": "orange"
+    },
+    {
+        "tier": "risky",
+        "color": "red"
+    },
+    {
+        "tier": "epic",
+        "color": "purple"
+    },
+    {
+        "tier": "rare",
+        "color": "blue"
+    },
+    {
+        "tier": "uncommon",
+        "color": "green"
+    },
+    {
+        "tier": "common",
+        "color": "grey"
+    }
+]

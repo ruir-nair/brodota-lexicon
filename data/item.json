@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Excalibur",
+        "tier": "legendary",
+        "effect": "+50% attack"
+    },
+    {
+        "name": "Phoenix Bow",
+        "tier": "epic",
+        "effect": "+40% attack"
+    },
+    {
+        "name": "Fire Sword",
+        "tier": "rare",
+        "effect": "+20% attack"
+    },
+    {
+        "name": "Ice Wand",
+        "tier": "uncommon",
+        "effect": "+15% attack"
+    },
+    {
+        "name": "Wooden Stick",
+        "tier": "common",
+        "effect": "+5% attack"
+    }
+]
