@@ -1,0 +1,12 @@
+[
+    {
+        "name": "sword",
+        "tier": "legendary",
+        "effect": "+30% attack"
+    },
+    {
+        "name": "bow",
+        "tier": "epic",
+        "effect": "+25% attack"
+    }
+]

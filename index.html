@@ -3,135 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item Manager</title>
+    <title>Item List</title>
     <style>
-        /* Add your CSS styles here */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
         }
 
-        h1, h2 {
-            color: #333;
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
         }
 
-        form {
-            margin-bottom: 20px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 8px;
+        th {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
 <body>
-    <h1>Item Manager Uhuy</h1>
+    <h1>Item List</h1>
 
-    <form id="addItemForm">
-        <label for="itemName">Item Name:</label>
-        <input type="text" id="itemName" required>
-        <button type="button" onclick="addItem()">Add Item</button>
-    </form>
+    <table id="itemTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Tier</th>
+                <th>Effect</th>
+            </tr>
+        </thead>
+        <tbody id="itemTableBody"></tbody>
+    </table>
 
-    <h2>Item List</h2>
-    <ul id="itemList"></ul>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const addItemForm = document.getElementById('addItemForm');
-            const itemList = document.getElementById('itemList');
-
-            // Define addItem globally
-            window.addItem = function() {
-                const itemName = document.getElementById('itemName').value;
-
-                // Add item to GitHub repository using GitHub API
-                addItemToGitHub(itemName);
-
-                // Clear the form
-                addItemForm.reset();
-
-                // Update the displayed items
-                displayItemsFromGitHub();
-            };
-
-            // Function to add item to GitHub repository using GitHub API
-            function addItemToGitHub(itemName) {
-                const username = 'ruir-nair';
-                const repo = 'brodota-lexicon';
-                const token = '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';
-
-                const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/item.json`;
-
-                fetch(apiUrl, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Parse the content as JSON
-                    const content = JSON.parse(atob(data.content));
-
-                    // Add new item
-                    content.push(itemName);
-
-                    // Encode the updated content to base64
-                    const updatedContent = btoa(JSON.stringify(content, null, 2));
-
-                    return fetch(apiUrl, {
-                        method: 'PUT',
-                        headers: {
-                            'Authorization': `Bearer ${token}`,
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            message: 'Add item to item.json',
-                            content: updatedContent,
-                            sha: data.sha,
-                        }),
-                    });
-                })
-                .then(response => response.json())
-                .then(data => console.log(data))
-                .catch(error => console.error('Error:', error));
-            }
-
-            // Function to display items from GitHub repository using GitHub API
-            function displayItemsFromGitHub() {
-                const username = 'ruir-nair';
-                const repo = 'brodota-lexicon';
-                const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/item.json`;
-
-                fetch(apiUrl)
-                    .then(response => response.json())
-                    .then(data => {
-                        // Parse the content as JSON
-                        const content = JSON.parse(atob(data.content));
-
-                        // Clear the current list
-                        itemList.innerHTML = '';
-
-                        // Display each item
-                        content.forEach(item => {
-                            const listItem = document.createElement('li');
-                            listItem.textContent = item;
-                            itemList.appendChild(listItem);
-                        });
-                    })
-                    .catch(error => console.error('Error:', error));
-            }
-
-
-            // Initial display
-            displayItemsFromGitHub();
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
