@@ -62,9 +62,9 @@
 
             // Function to add item to GitHub repository using GitHub API
             function addItemToGitHub(itemName) {
-                const username = 'your-username';
-                const repo = 'your-repository';
-                const token = 'your-access-token';
+                const username = 'ruir-nair';
+                const repo = 'brodota-lexicon';
+                const token = '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';
 
                 const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/item.json`;
 
@@ -105,8 +105,8 @@
 
             // Function to display items from GitHub repository using GitHub API
             function displayItemsFromGitHub() {
-                const username = 'your-username';
-                const repo = 'your-repository';
+                const username = 'ruir-nair';
+                const repo = 'brodota-lexicon';
                 const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/item.json`;
 
                 fetch(apiUrl)
