@@ -29,8 +29,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         row.appendChild(effectCell);
 
                         // Set background color based on tier
-                        const tierColor = tierColors[item.tier] || 'white';
+                        const tierColor = tierColors.find(tier => tier.tier === item.tier)?.color || 'white';
                         row.style.backgroundColor = tierColor;
+
+                        const tierColorCell = document.createElement('td');
+                        tierColorCell.textContent = tierColor;
+                        row.appendChild(tierColorCell);
 
                         itemTableBody.appendChild(row);
                     });
