@@ -3,56 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your GitHub Pages Website</title>
-    <!-- Add your own styling or link to an external CSS file -->
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-    </style>
+    <title>Item Manager</title>
 </head>
 <body>
-    <h1>Your GitHub Pages Website</h1>
+    <h1>Item Manager</h1>
 
-    <!-- Search Input -->
-    <input type="text" id="searchInput" placeholder="Search...">
-
-    <!-- Table -->
-    <table id="dataTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <!-- Add more columns as needed -->
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Table content will be dynamically populated here -->
-        </tbody>
-    </table>
-
-    <!-- Form to Add Something -->
-    <h2>Add Something</h2>
-    <form id="addForm">
-        <label for="id">ID:</label>
-        <input type="text" id="id" name="id" required><br>
-
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br>
-
-        <!-- Add more form fields as needed -->
-
-        <input type="submit" value="Add">
+    <form id="addItemForm">
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" required>
+        <button type="button" onclick="addItem()">Add Item</button>
     </form>
 
-    <!-- Add your own scripts or link to external JavaScript files -->
+    <h2>Item List</h2>
+    <ul id="itemList"></ul>
+
     <script src="main.js"></script>
 </body>
 </html>

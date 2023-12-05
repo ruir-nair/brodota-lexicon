@@ -1,54 +1,81 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const dataTable = document.getElementById('dataTable');
-    const searchInput = document.getElementById('searchInput');
-    const addForm = document.getElementById('addForm');
+    const addItemForm = document.getElementById('addItemForm');
+    const itemList = document.getElementById('itemList');
+    const username = 'ruir-nair';
+    const repo = 'brodota-lexicon';
+    const token = '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';
 
-    // Sample data
-    const data = [
-        { id: 1, name: 'Item 1' },
-        { id: 2, name: 'Item 2' },
-        // Add more data as needed
-    ];
-
-    // Function to populate the table
-    function populateTable() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const filteredData = data.filter(item =>
-            item.name.toLowerCase().includes(searchTerm)
-        );
-
-        // Clear existing rows
-        dataTable.querySelector('tbody').innerHTML = '';
-
-        // Populate the table with filtered data
-        filteredData.forEach(item => {
-            const row = dataTable.insertRow();
-            row.innerHTML = `<td>${item.id}</td><td>${item.name}</td>`;
-            // Add more cells for additional columns
-        });
-    }
-
-    // Event listener for search input
-    searchInput.addEventListener('input', populateTable);
-
-    // Event listener for form submission
-    addForm.addEventListener('submit', function (event) {
+    addItemForm.addEventListener('submit', function (event) {
         event.preventDefault();
-        
-        // Add form data to the data array
-        data.push({
-            id: addForm.elements.id.value,
-            name: addForm.elements.name.value,
-            // Add more properties as needed
-        });
 
-        // Repopulate the table
-        populateTable();
+        const itemName = document.getElementById('itemName').value;
+
+        // Add item to GitHub repository using GitHub API
+        addItemToGitHub(itemName);
 
         // Clear the form
-        addForm.reset();
+        addItemForm.reset();
+
+        // Update the displayed items
+        displayItemsFromGitHub();
     });
 
-    // Initial table population
-    populateTable();
+    // Function to add item to GitHub repository using GitHub API
+    function addItemToGitHub(itemName) {
+
+        const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/item.json`;
+
+        fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const content = JSON.parse(atob(data.content));
+            content.push(itemName);
+
+            return fetch(apiUrl, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: 'Add item to item.json',
+                    content: btoa(JSON.stringify(content, null, 2)),
+                    sha: data.sha,
+                }),
+            });
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+    }
+
+    // Function to display items from GitHub repository using GitHub API
+    function displayItemsFromGitHub() {
+        const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/item.json`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const content = JSON.parse(atob(data.content));
+
+                // Clear the current list
+                itemList.innerHTML = '';
+
+                // Display each item
+                content.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = item;
+                    itemList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    // Initial display
+    displayItemsFromGitHub();
 });
